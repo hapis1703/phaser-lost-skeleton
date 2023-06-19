@@ -1,0 +1,76 @@
+{"frames": [
+
+{
+	"filename": "big_demon_idle_anim_f0.png",
+	"frame": {"x":0,"y":0,"w":32,"h":36},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":36},
+	"sourceSize": {"w":32,"h":36}
+},
+{
+	"filename": "big_demon_idle_anim_f1.png",
+	"frame": {"x":0,"y":36,"w":32,"h":36},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":36},
+	"sourceSize": {"w":32,"h":36}
+},
+{
+	"filename": "big_demon_idle_anim_f2.png",
+	"frame": {"x":0,"y":72,"w":32,"h":36},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":36},
+	"sourceSize": {"w":32,"h":36}
+},
+{
+	"filename": "big_demon_idle_anim_f3.png",
+	"frame": {"x":0,"y":108,"w":32,"h":36},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":36},
+	"sourceSize": {"w":32,"h":36}
+},
+{
+	"filename": "big_demon_run_anim_f0.png",
+	"frame": {"x":0,"y":144,"w":32,"h":36},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":36},
+	"sourceSize": {"w":32,"h":36}
+},
+{
+	"filename": "big_demon_run_anim_f1.png",
+	"frame": {"x":0,"y":180,"w":32,"h":36},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":36},
+	"sourceSize": {"w":32,"h":36}
+},
+{
+	"filename": "big_demon_run_anim_f2.png",
+	"frame": {"x":0,"y":216,"w":32,"h":36},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":36},
+	"sourceSize": {"w":32,"h":36}
+},
+{
+	"filename": "big_demon_run_anim_f3.png",
+	"frame": {"x":0,"y":252,"w":32,"h":36},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":36},
+	"sourceSize": {"w":32,"h":36}
+}],
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "demon.png",
+	"format": "RGBA8888",
+	"size": {"w":32,"h":288},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:8e779b3c47af109acf5156d283fb4903:1a6693d8ed4217ef1f04e394634274a0:77480cee959c6322d08091b7933ffad5$"
+}
+}
