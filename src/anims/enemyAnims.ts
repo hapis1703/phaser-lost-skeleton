@@ -1,5 +1,6 @@
 import Phaser from "phaser";
 const createDemonAnims = (anims: Phaser.Animations.AnimationManager) => {
+  //animation for demon
   anims.create({
     key: "demon-idle",
     frames: anims.generateFrameNames("demon", {

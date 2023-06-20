@@ -22,25 +22,31 @@ export default class game extends Phaser.Scene {
   }
   create() {
     this.gameWin === false;
+    //import game ui
     this.scene.run("game-ui");
+    //import sprite animations
     createPlayerAnims(this.anims);
     createDemonAnims(this.anims);
+    //make tilemap
     const map = this.make.tilemap({ key: "map" });
     const tileset = map.addTilesetImage("dungeon", "tileset");
     map.createLayer("background", tileset);
     map.createLayer("ground", tileset);
     const exitLayer = map.createLayer("exit", tileset);
     exitLayer.setCollisionBetween(0, 99);
+    //sword
     this.swords = this.physics.add.group({
       classType: Phaser.Physics.Arcade.Image,
     });
+    //player
     this.player = this.add.player(120, 120, "player");
     this.player.setSwords(this.swords);
+    //wall
     const wallLayer = map.createLayer("wall", tileset);
     wallLayer.setCollisionBetween(0, 99);
-
+    //camera follow player
     this.cameras.main.startFollow(this.player);
-
+    //demon
     this.demons = this.physics.add.group({
       classType: Demon,
       createCallback: (go) => {
@@ -52,7 +58,7 @@ export default class game extends Phaser.Scene {
     demonLayer.objects.forEach((demonObj) => {
       this.demons.get(demonObj.x, demonObj.y, "demon");
     });
-
+    //player collide with exit door
     this.physics.add.collider(
       this.player,
       exitLayer,
@@ -60,9 +66,13 @@ export default class game extends Phaser.Scene {
       undefined,
       this
     );
+    //player collide with wall
     this.physics.add.collider(this.player, wallLayer);
+    //demon collide with wall
     this.physics.add.collider(this.demons, wallLayer);
+    //sword collide with wall
     this.physics.add.collider(this.swords, wallLayer);
+    //sword collide with demons
     this.physics.add.collider(
       this.swords,
       this.demons,
@@ -70,6 +80,7 @@ export default class game extends Phaser.Scene {
       undefined,
       this
     );
+    //player collide with demons
     this.playerDemonsCollider = this.physics.add.collider(
       this.demons,
       this.player,
@@ -78,6 +89,7 @@ export default class game extends Phaser.Scene {
       this
     );
   }
+  //function if player collide with exit door
   private handlePlayerExitOverlap() {
     this.gameWin === true;
 
@@ -86,6 +98,7 @@ export default class game extends Phaser.Scene {
       this.scene.start("game-over");
     }
   }
+  //function if sword collide with demons
   private handleSwordDemonCollision(
     obj1: Phaser.GameObjects.GameObject,
     obj2: Phaser.GameObjects.GameObject
@@ -93,10 +106,8 @@ export default class game extends Phaser.Scene {
     this.swords.killAndHide(obj1);
     this.demons.killAndHide(obj2);
   }
-  private handlePlayerDemonCollision(
-    obj1: Phaser.GameObjects.GameObject,
-    obj2: Phaser.GameObjects.GameObject
-  ) {
+  //function if player collide with demon
+  private handlePlayerDemonCollision(obj2: Phaser.GameObjects.GameObject) {
     const demon = obj2 as Demon;
     const dx = this.player.x - demon.x;
     const dy = this.player.y - demon.y;
@@ -108,7 +119,11 @@ export default class game extends Phaser.Scene {
     }
   }
   update(time: number, delta: number): void {
-    this.playerControl();
+    //the control for player
+    if (this.player) {
+      this.player.update(this.cursors);
+    }
+    //if player die it will make you start the game over scene
     if (this.player._health <= 0) {
       this.time.addEvent({
         delay: 2000,
@@ -116,11 +131,6 @@ export default class game extends Phaser.Scene {
           this.scene.start("game-over");
         },
       });
-    }
-  }
-  playerControl() {
-    if (this.player) {
-      this.player.update(this.cursors);
     }
   }
 }

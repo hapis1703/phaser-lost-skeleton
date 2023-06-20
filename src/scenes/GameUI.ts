@@ -6,9 +6,11 @@ export default class GameUI extends Phaser.Scene {
     super({ key: "game-ui" });
   }
   create() {
+    //make hearts image
     this.hearts = this.add.group({
       classType: Phaser.GameObjects.Image,
     });
+    //make hearts have 4 image
     this.hearts.createMultiple({
       key: "ui-heart-full",
       setXY: {
@@ -18,6 +20,7 @@ export default class GameUI extends Phaser.Scene {
       },
       quantity: 4,
     });
+    //calling "player-health-changed" event when player got hitted
     sceneEvents.on(
       "player-health-changed",
       this.handlePlayerHealthChanged,
@@ -31,7 +34,7 @@ export default class GameUI extends Phaser.Scene {
       );
     });
   }
-
+  //function if the player got hitted
   private handlePlayerHealthChanged(health: number) {
     this.hearts.children.each((go, idx) => {
       const heart = go as Phaser.GameObjects.Image;

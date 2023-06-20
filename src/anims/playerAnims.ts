@@ -1,5 +1,6 @@
 import Phaser from "phaser";
 const createPlayerAnims = (anims: Phaser.Animations.AnimationManager) => {
+  //animation for player
   anims.create({
     key: "player-idle-down",
     frames: anims.generateFrameNames("player", {
