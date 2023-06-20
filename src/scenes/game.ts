@@ -44,6 +44,9 @@ export default class game extends Phaser.Scene {
     //wall
     const wallLayer = map.createLayer("wall", tileset);
     wallLayer.setCollisionBetween(0, 99);
+    //place that demon cant go
+    const wallForDemon = map.createLayer("demonWall", tileset);
+    wallForDemon.setCollisionBetween(0, 99);
     //camera follow player
     this.cameras.main.startFollow(this.player);
     //demon
@@ -53,6 +56,11 @@ export default class game extends Phaser.Scene {
         const demonGo = go as Demon;
         demonGo.body.onCollide = true;
       },
+    });
+    const heartPotion = this.physics.add.staticGroup();
+    const heartLayer = map.getObjectLayer("heartpotion");
+    heartLayer.objects.forEach((potionObj) => {
+      heartPotion.get(potionObj.x, potionObj.y, "h-potion");
     });
     const demonLayer = map.getObjectLayer("Demons");
     demonLayer.objects.forEach((demonObj) => {
@@ -73,13 +81,6 @@ export default class game extends Phaser.Scene {
     //sword collide with wall
     this.physics.add.collider(this.swords, wallLayer);
     //sword collide with demons
-    this.physics.add.collider(
-      this.swords,
-      this.demons,
-      this.handleSwordDemonCollision,
-      undefined,
-      this
-    );
     //player collide with demons
     this.playerDemonsCollider = this.physics.add.collider(
       this.demons,
@@ -88,6 +89,14 @@ export default class game extends Phaser.Scene {
       undefined,
       this
     );
+    this.physics.add.collider(
+      this.swords,
+      this.demons,
+      this.handlePlayerDemonCollision,
+      undefined,
+      this
+    );
+    this.physics.add.collider(this.demons, wallForDemon);
   }
   //function if player collide with exit door
   private handlePlayerExitOverlap() {

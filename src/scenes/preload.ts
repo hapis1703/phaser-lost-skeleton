@@ -12,6 +12,7 @@ export default class preload extends Phaser.Scene {
     this.load.image("ui-heart-full", "hearts/ui_heart_full.png");
     this.load.image("sword", "weapon/sword.png");
     this.load.audio("damage", "audio/y2mate.com - Sound effect Uh.mp3");
+    this.load.image("h-potion", "hearts/hearts-potion");
   }
   create() {
     this.scene.start("game");
