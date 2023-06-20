@@ -29,7 +29,7 @@ export default class game extends Phaser.Scene {
     createDemonAnims(this.anims);
     //make tilemap
     const map = this.make.tilemap({ key: "map" });
-    const tileset = map.addTilesetImage("dungeon", "tileset");
+    const tileset = map.addTilesetImage("dungeon", "tileset", 16, 16, 1, 2);
     map.createLayer("background", tileset);
     map.createLayer("ground", tileset);
     const exitLayer = map.createLayer("exit", tileset);
