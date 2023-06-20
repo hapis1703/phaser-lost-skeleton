@@ -35,10 +35,11 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   ) {
     super(scene, x, y, texture, frame);
   }
+  //make sword variable
   setSwords(swords: Phaser.Physics.Arcade.Group) {
     this.swords = swords;
   }
-
+  //if player got hit, it will reduce the player health
   handleDamage(dir: Phaser.Math.Vector2, scene: Phaser.Scene) {
     if (this.healthState === HealthState.DAMAGE) {
       return;
@@ -57,6 +58,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
       this.damageTime = 0;
     }
   }
+  //make player can throw sword
   private throwSword() {
     if (!this.swords) {
       return;
@@ -126,10 +128,12 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     if (!cursors) {
       return;
     }
+    //the control for player
     if (Phaser.Input.Keyboard.JustDown(cursors.space!)) {
       this.throwSword();
       return;
     }
+
     if (cursors.left?.isDown) {
       this.setVelocity(-100, 0);
       this.play("player-walk-rl", true);
