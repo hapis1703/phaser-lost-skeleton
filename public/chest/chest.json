@@ -1,0 +1,172 @@
+{"frames": [
+
+{
+	"filename": "chest_1.png",
+	"frame": {"x":1,"y":1,"w":16,"h":15},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":15},
+	"sourceSize": {"w":16,"h":16}
+},
+{
+	"filename": "chest_2.png",
+	"frame": {"x":1,"y":84,"w":16,"h":13},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":2,"w":16,"h":13},
+	"sourceSize": {"w":16,"h":16}
+},
+{
+	"filename": "chest_3.png",
+	"frame": {"x":1,"y":52,"w":16,"h":14},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":1,"w":16,"h":14},
+	"sourceSize": {"w":16,"h":16}
+},
+{
+	"filename": "chest_4.png",
+	"frame": {"x":1,"y":18,"w":16,"h":15},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":15},
+	"sourceSize": {"w":16,"h":16}
+},
+{
+	"filename": "chest_open_1.png",
+	"frame": {"x":1,"y":99,"w":16,"h":13},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":2,"w":16,"h":13},
+	"sourceSize": {"w":16,"h":16}
+},
+{
+	"filename": "chest_open_2.png",
+	"frame": {"x":1,"y":114,"w":16,"h":13},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":13},
+	"sourceSize": {"w":16,"h":16}
+},
+{
+	"filename": "chest_open_3.png",
+	"frame": {"x":1,"y":35,"w":16,"h":15},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":15},
+	"sourceSize": {"w":16,"h":16}
+},
+{
+	"filename": "chest_open_4.png",
+	"frame": {"x":1,"y":68,"w":16,"h":14},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":1,"w":16,"h":14},
+	"sourceSize": {"w":16,"h":16}
+},
+{
+	"filename": "coin_1.png",
+	"frame": {"x":19,"y":46,"w":12,"h":12},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":2,"y":2,"w":12,"h":12},
+	"sourceSize": {"w":16,"h":16}
+},
+{
+	"filename": "coin_2.png",
+	"frame": {"x":19,"y":101,"w":10,"h":12},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":3,"y":2,"w":10,"h":12},
+	"sourceSize": {"w":16,"h":16}
+},
+{
+	"filename": "coin_3.png",
+	"frame": {"x":1,"y":129,"w":6,"h":12},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":5,"y":2,"w":6,"h":12},
+	"sourceSize": {"w":16,"h":16}
+},
+{
+	"filename": "coin_4.png",
+	"frame": {"x":19,"y":115,"w":10,"h":12},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":3,"y":2,"w":10,"h":12},
+	"sourceSize": {"w":16,"h":16}
+},
+{
+	"filename": "mini_chest_1.png",
+	"frame": {"x":19,"y":1,"w":12,"h":13},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":2,"y":2,"w":12,"h":13},
+	"sourceSize": {"w":16,"h":16}
+},
+{
+	"filename": "mini_chest_2.png",
+	"frame": {"x":9,"y":129,"w":14,"h":11},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":1,"y":4,"w":14,"h":11},
+	"sourceSize": {"w":16,"h":16}
+},
+{
+	"filename": "mini_chest_3.png",
+	"frame": {"x":19,"y":60,"w":12,"h":12},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":2,"y":3,"w":12,"h":12},
+	"sourceSize": {"w":16,"h":16}
+},
+{
+	"filename": "mini_chest_4.png",
+	"frame": {"x":19,"y":16,"w":12,"h":13},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":2,"y":2,"w":12,"h":13},
+	"sourceSize": {"w":16,"h":16}
+},
+{
+	"filename": "mini_chest_open_1.png",
+	"frame": {"x":9,"y":142,"w":14,"h":11},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":1,"y":4,"w":14,"h":11},
+	"sourceSize": {"w":16,"h":16}
+},
+{
+	"filename": "mini_chest_open_2.png",
+	"frame": {"x":19,"y":74,"w":12,"h":12},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":2,"y":1,"w":12,"h":12},
+	"sourceSize": {"w":16,"h":16}
+},
+{
+	"filename": "mini_chest_open_3.png",
+	"frame": {"x":19,"y":31,"w":12,"h":13},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":2,"y":2,"w":12,"h":13},
+	"sourceSize": {"w":16,"h":16}
+},
+{
+	"filename": "mini_chest_open_4.png",
+	"frame": {"x":19,"y":88,"w":12,"h":11},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":2,"y":4,"w":12,"h":11},
+	"sourceSize": {"w":16,"h":16}
+}],
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "chest.png",
+	"format": "RGBA8888",
+	"size": {"w":32,"h":154},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:b6430d3b3cf3758dcffc445e087c5c14:464b8520021548602b3f472d8f0d4aed:d0951faa14b608797f96616a345e52d5$"
+}
+}

@@ -4,6 +4,7 @@ import { createPlayerAnims } from "../anims/playerAnims";
 import Demon from "~/sprites/demon";
 import "../sprites/player";
 import { sceneEvents } from "../events/EventsCenter";
+import {} from "../anims/treasureAnims";
 
 export default class game extends Phaser.Scene {
   //@ts-ignore
@@ -57,11 +58,6 @@ export default class game extends Phaser.Scene {
         demonGo.body.onCollide = true;
       },
     });
-    const heartPotion = this.physics.add.staticGroup();
-    const heartLayer = map.getObjectLayer("heartpotion");
-    heartLayer.objects.forEach((potionObj) => {
-      heartPotion.get(potionObj.x, potionObj.y, "h-potion");
-    });
     const demonLayer = map.getObjectLayer("Demons");
     demonLayer.objects.forEach((demonObj) => {
       this.demons.get(demonObj.x, demonObj.y, "demon");
@@ -79,8 +75,13 @@ export default class game extends Phaser.Scene {
     //demon collide with wall
     this.physics.add.collider(this.demons, wallLayer);
     //sword collide with wall
-    this.physics.add.collider(this.swords, wallLayer);
-    //sword collide with demons
+    this.physics.add.collider(
+      this.swords,
+      wallLayer,
+      this.handleSwordWallCollision,
+      undefined,
+      this
+    );
     //player collide with demons
     this.playerDemonsCollider = this.physics.add.collider(
       this.demons,
@@ -92,7 +93,7 @@ export default class game extends Phaser.Scene {
     this.physics.add.collider(
       this.swords,
       this.demons,
-      this.handlePlayerDemonCollision,
+      this.handleSwordDemonCollision,
       undefined,
       this
     );
@@ -106,6 +107,9 @@ export default class game extends Phaser.Scene {
       sceneEvents.emit("playerWins", this.gameWin);
       this.scene.start("game-over");
     }
+  }
+  private handleSwordWallCollision(obj1: Phaser.GameObjects.GameObject) {
+    this.swords.killAndHide(obj1);
   }
   //function if sword collide with demons
   private handleSwordDemonCollision(
