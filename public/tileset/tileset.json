@@ -820,9 +820,86 @@
          "visible":true,
          "x":0,
          "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":13,
+         "name":"chests",
+         "objects":[
+                {
+                 "height":0,
+                 "id":48,
+                 "name":"chest spawn",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":256.25,
+                 "y":59
+                }, 
+                {
+                 "height":0,
+                 "id":49,
+                 "name":"chest spawn",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":195.167,
+                 "y":306.667
+                }, 
+                {
+                 "height":0,
+                 "id":50,
+                 "name":"chest spawn",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":920.667,
+                 "y":372.167
+                }, 
+                {
+                 "height":0,
+                 "id":52,
+                 "name":"chest spawn",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":421.833,
+                 "y":922
+                }, 
+                {
+                 "height":0,
+                 "id":53,
+                 "name":"chest spawn",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":1121.33,
+                 "y":1048.83
+                }, 
+                {
+                 "height":0,
+                 "id":54,
+                 "name":"chest spawn",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":1422.67,
+                 "y":1158.33
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
         }],
- "nextlayerid":13,
- "nextobjectid":43,
+ "nextlayerid":15,
+ "nextobjectid":55,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.10.1",

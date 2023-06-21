@@ -4,6 +4,8 @@ import preload from "./scenes/preload";
 import game from "./scenes/game";
 import GameUI from "./scenes/GameUI";
 import GameOver from "./scenes/gameOver";
+import GameStart from "./scenes/opening";
+import GameWin from "./scenes/winGame";
 
 const config: Phaser.Types.Core.GameConfig = {
   type: Phaser.AUTO,
@@ -13,10 +15,10 @@ const config: Phaser.Types.Core.GameConfig = {
     default: "arcade",
     arcade: {
       gravity: { y: 0 },
-      debug: true,
+      debug: false,
     },
   },
-  scene: [preload, game, GameUI, GameOver],
+  scene: [preload, GameStart, game, GameUI, GameOver, GameWin],
   scale: {
     zoom: 3.5,
   },

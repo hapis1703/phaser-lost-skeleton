@@ -13,8 +13,17 @@ export default class preload extends Phaser.Scene {
     this.load.image("sword", "weapon/sword.png");
     this.load.audio("damage", "audio/y2mate.com - Sound effect Uh.mp3");
     this.load.atlas("treasure", "chest/chest.png", "chest/chest.json");
+    this.load.image("coin", "chest/coin.png");
+    this.load.audio("beep-coin", "audio/coin-sound.mp3");
+    this.load.image("background", "background/dark-purple.png");
+    this.load.image("replay-btn", "buttons/replay.png");
+    this.load.image("start-btn", "buttons/start_button.png");
+    this.load.image("logo", "logo/LOGO.png");
+    this.load.image("logo-p", "background/player.png");
+    this.load.audio("backsound", "audio/backsound.mp3");
+    this.load.audio("damage", "audio/damage-sound.mp3");
   }
   create() {
-    this.scene.start("game");
+    this.scene.start("game-start");
   }
 }

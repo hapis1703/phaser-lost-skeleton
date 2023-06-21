@@ -4,7 +4,8 @@ import { createPlayerAnims } from "../anims/playerAnims";
 import Demon from "~/sprites/demon";
 import "../sprites/player";
 import { sceneEvents } from "../events/EventsCenter";
-import {} from "../anims/treasureAnims";
+import { createTreasureAnims } from "../anims/treasureAnims";
+import Chest from "../items/chest";
 
 export default class game extends Phaser.Scene {
   //@ts-ignore
@@ -13,7 +14,6 @@ export default class game extends Phaser.Scene {
   private playerDemonsCollider?: Phaser.Physics.Arcade.Collider;
   private swords!: Phaser.Physics.Arcade.Group;
   private demons!: Phaser.Physics.Arcade.Group;
-  private gameWin!: boolean;
 
   constructor() {
     super("game");
@@ -22,12 +22,14 @@ export default class game extends Phaser.Scene {
     this.cursors = this.input.keyboard.createCursorKeys();
   }
   create() {
-    this.gameWin === false;
+    this.sound.play("backsound");
+    sceneEvents.on("player-coins-changed", this.handleCoinsound, this);
     //import game ui
     this.scene.run("game-ui");
     //import sprite animations
     createPlayerAnims(this.anims);
     createDemonAnims(this.anims);
+    createTreasureAnims(this.anims);
     //make tilemap
     const map = this.make.tilemap({ key: "map" });
     const tileset = map.addTilesetImage("dungeon", "tileset", 16, 16, 1, 2);
@@ -48,6 +50,13 @@ export default class game extends Phaser.Scene {
     //place that demon cant go
     const wallForDemon = map.createLayer("demonWall", tileset);
     wallForDemon.setCollisionBetween(0, 99);
+    const chests = this.physics.add.staticGroup({
+      classType: Chest,
+    });
+    const chestsLayer = map.getObjectLayer("chests");
+    chestsLayer.objects.forEach((chestObj) => {
+      chests.get(chestObj.x, chestObj.y, "treasure");
+    });
     //camera follow player
     this.cameras.main.startFollow(this.player);
     //demon
@@ -98,14 +107,29 @@ export default class game extends Phaser.Scene {
       this
     );
     this.physics.add.collider(this.demons, wallForDemon);
+    this.physics.add.collider(
+      this.player,
+      chests,
+      this.handlePlayerChestCollision,
+      undefined,
+      this
+    );
+  }
+  private handleCoinsound() {
+    this.sound.play("beep-coin");
+  }
+  private handlePlayerChestCollision(
+    obj1: Phaser.GameObjects.GameObject,
+    obj2: Phaser.GameObjects.GameObject
+  ) {
+    const chest = obj2 as Chest;
+    this.player.setChest(chest);
   }
   //function if player collide with exit door
   private handlePlayerExitOverlap() {
-    this.gameWin === true;
-
-    if ((this.gameWin = true)) {
-      sceneEvents.emit("playerWins", this.gameWin);
+    if (this.player._coins >= 1000) {
       this.scene.start("game-over");
+      this.sound.stopByKey("backsound");
     }
   }
   private handleSwordWallCollision(obj1: Phaser.GameObjects.GameObject) {
@@ -120,15 +144,22 @@ export default class game extends Phaser.Scene {
     this.demons.killAndHide(obj2);
   }
   //function if player collide with demon
-  private handlePlayerDemonCollision(obj2: Phaser.GameObjects.GameObject) {
+  private handlePlayerDemonCollision(
+    obj1: Phaser.GameObjects.GameObject,
+    obj2: Phaser.GameObjects.GameObject
+  ) {
     const demon = obj2 as Demon;
     const dx = this.player.x - demon.x;
     const dy = this.player.y - demon.y;
     const dir = new Phaser.Math.Vector2(dx, dy).normalize().scale(200);
+    this.player.setVelocity(dir.x, dir.y);
     this.player.handleDamage(dir);
     sceneEvents.emit("player-health-changed", this.player.health);
     if (this.player.health <= 0) {
       this.playerDemonsCollider?.destroy();
+      this.time.delayedCall(2000, () => {
+        this.sound.stopByKey("backsound");
+      });
     }
   }
   update(time: number, delta: number): void {
@@ -141,7 +172,7 @@ export default class game extends Phaser.Scene {
       this.time.addEvent({
         delay: 2000,
         callback: () => {
-          this.scene.start("game-over");
+          this.scene.start("game-over", { coins: this.player._coins });
         },
       });
     }

@@ -1,4 +1,6 @@
-import Phaser from "phaser";
+import Phaser, { Sound } from "phaser";
+import Chest from "../items/chest";
+import { sceneEvents } from "../events/EventsCenter";
 declare global {
   namespace Phaser.GameObjects {
     interface GameObjectFactory {
@@ -23,6 +25,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
   private _health = 4;
   private swords!: Phaser.Physics.Arcade.Group;
+  private activeChest?: Chest;
+  private _coins = 0;
   get health() {
     return this._health;
   }
@@ -38,6 +42,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   //make sword variable
   setSwords(swords: Phaser.Physics.Arcade.Group) {
     this.swords = swords;
+  }
+  setChest(chest: Chest) {
+    this.activeChest = chest;
   }
   //if player got hit, it will reduce the player health
   handleDamage(dir: Phaser.Math.Vector2, scene: Phaser.Scene) {
@@ -130,29 +137,42 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     }
     //the control for player
     if (Phaser.Input.Keyboard.JustDown(cursors.space!)) {
-      this.throwSword();
+      if (this.activeChest) {
+        const coins = this.activeChest.open();
+        this._coins += coins;
+        sceneEvents.emit("player-coins-changed", this._coins);
+      } else {
+        this.throwSword();
+      }
       return;
     }
+    const leftDown = cursors.left?.isDown;
+    const rightDown = cursors.right?.isDown;
+    const upDown = cursors.up?.isDown;
+    const downDown = cursors.down?.isDown;
 
-    if (cursors.left?.isDown) {
+    if (leftDown) {
       this.setVelocity(-100, 0);
       this.play("player-walk-rl", true);
       this.scaleX = 1;
       this.body.offset.x = 15;
-    } else if (cursors.right?.isDown) {
+    } else if (rightDown) {
       this.setVelocity(100, 0);
       this.play("player-walk-rl", true);
       this.scaleX = -1;
       this.body.offset.x = 33;
-    } else if (cursors.up?.isDown) {
+    } else if (upDown) {
       this.setVelocity(0, -100);
       this.play("player-walk-up", true);
-    } else if (cursors.down?.isDown) {
+    } else if (downDown) {
       this.setVelocity(0, 100);
       this.play("player-walk-down", true);
     } else {
       this.setVelocity(0, 0);
       this.play("player-idle-down", true);
+    }
+    if (leftDown || rightDown || upDown || downDown) {
+      this.activeChest = undefined;
     }
   }
 }

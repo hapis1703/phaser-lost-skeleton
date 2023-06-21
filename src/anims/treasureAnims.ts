@@ -9,7 +9,7 @@ const createTreasureAnims = (anims: Phaser.Animations.AnimationManager) => {
       suffix: ".png",
     }),
     repeat: -1,
-    frameRate: 7,
+    frameRate: 8,
   });
   anims.create({
     key: "chest-opened",
@@ -19,8 +19,7 @@ const createTreasureAnims = (anims: Phaser.Animations.AnimationManager) => {
       prefix: "chest_open_",
       suffix: ".png",
     }),
-    repeat: -1,
-    frameRate: 7,
+    frameRate: 4,
   });
 };
 export { createTreasureAnims };

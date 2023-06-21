@@ -6,6 +6,11 @@ export default class GameUI extends Phaser.Scene {
     super({ key: "game-ui" });
   }
   create() {
+    this.add.image(10, 30, "coin");
+    const coinsLabel = this.add.text(20, 25, "0");
+    sceneEvents.on("player-coins-changed", (coins: number) => {
+      coinsLabel.text = coins.toString();
+    });
     //make hearts image
     this.hearts = this.add.group({
       classType: Phaser.GameObjects.Image,
@@ -32,6 +37,7 @@ export default class GameUI extends Phaser.Scene {
         this.handlePlayerHealthChanged,
         this
       );
+      sceneEvents.off("player-coins-changed");
     });
   }
   //function if the player got hitted

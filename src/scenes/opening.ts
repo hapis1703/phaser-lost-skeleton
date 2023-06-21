@@ -1,20 +1,19 @@
 import Phaser, { Scenes } from "phaser";
 import { sceneEvents } from "~/events/EventsCenter";
 import "../sprites/player";
-export default class GameOver extends Phaser.Scene {
+export default class GameStart extends Phaser.Scene {
   //@ts-ignore
   constructor() {
-    super("game-over");
+    super("game-start");
   }
   preload() {}
   create() {
-    this.sound.stopAll;
     const background = this.add.image(362.5, 180, "background");
     background.setScale(1.5);
-    this.add.text(310, 80, "KAU KALAH!!");
-    this.add.text(270, 120, "Ayo Coba Sekali lagi").setScale(1);
+    this.add.image(470, 80, "logo-p").setScale(2);
+    this.add.image(360, 80, "logo").setScale(0.6);
     const button = this.add
-      .image(360, 180, "replay-btn")
+      .image(360, 180, "start-btn")
       .setInteractive({ useHandCursor: true })
       .once(
         "pointerup",
@@ -23,6 +22,6 @@ export default class GameOver extends Phaser.Scene {
         },
         this
       )
-      .setScale(0.5);
+      .setScale(0.25);
   }
 }
