@@ -8,6 +8,7 @@ export default class GameStart extends Phaser.Scene {
   }
   preload() {}
   create() {
+    this.scene.stop("game-ui");
     const background = this.add.image(362.5, 180, "background");
     background.setScale(1.5);
     this.add.image(470, 80, "logo-p").setScale(2);
@@ -23,5 +24,11 @@ export default class GameStart extends Phaser.Scene {
         this
       )
       .setScale(0.25);
+    const controlbtn = this.add
+      .text(30, 30, "[ CONTROLS ]")
+      .setInteractive()
+      .once("pointerup", () => {
+        this.scene.start("controls");
+      });
   }
 }

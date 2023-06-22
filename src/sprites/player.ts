@@ -23,7 +23,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   private healthState = HealthState.IDLE;
   private damageTime = 0;
 
-  private _health = 4;
+  private _health = 5;
   private swords!: Phaser.Physics.Arcade.Group;
   private activeChest?: Chest;
   private _coins = 0;
@@ -125,7 +125,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         break;
     }
   }
-  update(cursors: Phaser.Types.Input.Keyboard.CursorKeys) {
+  update(cursors: Phaser.Types.Input.Keyboard.CursorKeys, game: Phaser.Game) {
     if (
       this.healthState === HealthState.DAMAGE ||
       this.healthState === HealthState.DEAD
@@ -143,6 +143,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         sceneEvents.emit("player-coins-changed", this._coins);
       } else {
         this.throwSword();
+        sceneEvents.emit("player-sword-sound");
       }
       return;
     }

@@ -22,8 +22,11 @@ export default class game extends Phaser.Scene {
     this.cursors = this.input.keyboard.createCursorKeys();
   }
   create() {
-    this.sound.play("backsound");
+    let backsound = this.sound.add("backsound");
+    backsound.play({ loop: true });
     sceneEvents.on("player-coins-changed", this.handleCoinsound, this);
+    sceneEvents.on("player-sword-sound", this.handleSwordSound, this);
+    sceneEvents.on("player-hitted", this.handlePlayerHit, this);
     //import game ui
     this.scene.run("game-ui");
     //import sprite animations
@@ -48,8 +51,6 @@ export default class game extends Phaser.Scene {
     const wallLayer = map.createLayer("wall", tileset);
     wallLayer.setCollisionBetween(0, 99);
     //place that demon cant go
-    const wallForDemon = map.createLayer("demonWall", tileset);
-    wallForDemon.setCollisionBetween(0, 99);
     const chests = this.physics.add.staticGroup({
       classType: Chest,
     });
@@ -71,6 +72,7 @@ export default class game extends Phaser.Scene {
     demonLayer.objects.forEach((demonObj) => {
       this.demons.get(demonObj.x, demonObj.y, "demon");
     });
+
     //player collide with exit door
     this.physics.add.collider(
       this.player,
@@ -106,7 +108,6 @@ export default class game extends Phaser.Scene {
       undefined,
       this
     );
-    this.physics.add.collider(this.demons, wallForDemon);
     this.physics.add.collider(
       this.player,
       chests,
@@ -114,6 +115,12 @@ export default class game extends Phaser.Scene {
       undefined,
       this
     );
+  }
+  private handlePlayerHit() {
+    this.sound.play("dead");
+  }
+  private handleSwordSound() {
+    this.sound.play("sword");
   }
   private handleCoinsound() {
     this.sound.play("beep-coin");
@@ -127,9 +134,9 @@ export default class game extends Phaser.Scene {
   }
   //function if player collide with exit door
   private handlePlayerExitOverlap() {
-    if (this.player._coins >= 1000) {
-      this.scene.start("game-over");
-      this.sound.stopByKey("backsound");
+    if (this.player._coins >= 900) {
+      this.scene.start("game-win");
+      this.sound.stopAll();
     }
   }
   private handleSwordWallCollision(obj1: Phaser.GameObjects.GameObject) {
@@ -140,8 +147,9 @@ export default class game extends Phaser.Scene {
     obj1: Phaser.GameObjects.GameObject,
     obj2: Phaser.GameObjects.GameObject
   ) {
+    const demon = obj2 as Demon;
     this.swords.killAndHide(obj1);
-    this.demons.killAndHide(obj2);
+    demon.destroy();
   }
   //function if player collide with demon
   private handlePlayerDemonCollision(
@@ -155,6 +163,7 @@ export default class game extends Phaser.Scene {
     this.player.setVelocity(dir.x, dir.y);
     this.player.handleDamage(dir);
     sceneEvents.emit("player-health-changed", this.player.health);
+    sceneEvents.emit("player-hitted");
     if (this.player.health <= 0) {
       this.playerDemonsCollider?.destroy();
       this.time.delayedCall(2000, () => {
@@ -172,7 +181,8 @@ export default class game extends Phaser.Scene {
       this.time.addEvent({
         delay: 2000,
         callback: () => {
-          this.scene.start("game-over", { coins: this.player._coins });
+          this.scene.start("game-over");
+          this.sound.stopAll();
         },
       });
     }

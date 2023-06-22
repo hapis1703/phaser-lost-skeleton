@@ -4,8 +4,10 @@ import preload from "./scenes/preload";
 import game from "./scenes/game";
 import GameUI from "./scenes/GameUI";
 import GameOver from "./scenes/gameOver";
-import GameStart from "./scenes/opening";
 import GameWin from "./scenes/winGame";
+import GameStart from "./scenes/opening";
+import Controls from "./scenes/control";
+import Pause from "./scenes/pause";
 
 const config: Phaser.Types.Core.GameConfig = {
   type: Phaser.AUTO,
@@ -18,7 +20,7 @@ const config: Phaser.Types.Core.GameConfig = {
       debug: false,
     },
   },
-  scene: [preload, GameStart, game, GameUI, GameOver, GameWin],
+  scene: [preload, GameStart, Controls, game, GameUI, Pause, GameOver, GameWin],
   scale: {
     zoom: 3.5,
   },

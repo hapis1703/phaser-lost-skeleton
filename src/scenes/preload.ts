@@ -22,6 +22,14 @@ export default class preload extends Phaser.Scene {
     this.load.image("logo-p", "background/player.png");
     this.load.audio("backsound", "audio/backsound.mp3");
     this.load.audio("damage", "audio/damage-sound.mp3");
+    this.load.audio("win", "audio/win.mp3");
+    this.load.audio("lose", "audio/lose.mp3");
+    this.load.audio("sword", "audio/sword.mp3");
+    this.load.audio("dead", "audio/dead.ogg");
+    this.load.image("black", "controls/Black.png");
+    this.load.image("arrow-key", "controls/arrow-key.png");
+    this.load.image("space", "controls/space-icon2.png");
+    this.load.image("pause", "buttons/pause.png");
   }
   create() {
     this.scene.start("game-start");

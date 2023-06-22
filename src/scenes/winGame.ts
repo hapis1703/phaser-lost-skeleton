@@ -8,7 +8,7 @@ export default class GameWin extends Phaser.Scene {
   }
   preload() {}
   create() {
-    this.sound.stopAll;
+    this.sound.play("win");
     const background = this.add.image(362.5, 180, "background");
     background.setScale(1.5);
     this.add.text(270, 80, "SELAMAT KAU MENANG!!");
@@ -21,7 +21,7 @@ export default class GameWin extends Phaser.Scene {
       .once(
         "pointerup",
         () => {
-          this.scene.start("game");
+          this.scene.start("game-start");
         },
         this
       )
